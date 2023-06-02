@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Git clone'){
             steps{
-                git 'https://github.com/shazforiot/HelloWorld-Springboot-App.git'
+                git 'https://github.com/sowjanya-rajana/HelloWorld.git'
             }
         }
         
@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Create Dockerimage'){
             steps{
-                sh 'docker build -t thetips4you/springboot:latest .'
+                sh 'docker build -t gcr.io/nxg-digital/springboot:latest .'
             }
         }
         
