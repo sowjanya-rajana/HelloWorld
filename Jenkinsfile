@@ -17,7 +17,7 @@ pipeline{
         }
         stage('Create Dockerimage'){
             steps{
-                sh 'docker build -t gcr.io/nxg-digital/springboot:latest .'
+                sh 'docker build -t gcr.io/nxg-digital/springboot:latest -f dockerfile .'
             }
         }
         
