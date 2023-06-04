@@ -17,7 +17,28 @@ pipeline{
         }
         stage('Create Dockerimage'){
             steps{
-                sh 'docker build -t gcr.io/nxg-digital/springboot:latest -f dockerfile .'
+                sh 'docker build -t gcr.io/nxg-digital/Hello-world:latest -f dockerfile .'
+            }
+        }
+        stage('Push Image'){
+            steps{
+                script{
+                     
+                    sh 'gcloud auth configure-docker -q '
+                    // sh 'docker push gcr.io/${params.DOCKER_REPO}/${params.DOCKER_IMAGE}:${params.DOCKER_TAG} '
+                    sh 'docker push gcr.io/nxg-digital/Hello-world:latest'
+                    
+                }
+            }
+        }
+        stage('Remove Image'){
+            steps{
+                script{
+                    echo "Remove docker image"
+                    sh 'docker rmi gcr.io/nxg-digital/Hello-world:latest '
+                    echo "Docker image removed"
+                    
+                }
             }
         }
         
