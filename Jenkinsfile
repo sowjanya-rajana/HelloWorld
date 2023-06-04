@@ -22,4 +22,14 @@ pipeline{
         }
         
     }
+     post{
+    success{
+                emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: 'Status : $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'sowjanya@nxgsolutions.in'
+                 }
+    failure{
+                echo "failed job!!!"
+                emailext attachLog: true, body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}", subject: 'Status : $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'sowjanya@nxgsolutions.in'
+              
+                }
+        }
 }
